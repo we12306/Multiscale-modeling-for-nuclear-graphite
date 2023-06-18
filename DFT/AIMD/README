@@ -1,2 +1,3 @@
 收集AIMD计算文件
-主要包括辐照前后石墨晶体和掺杂Xe的石墨晶体AIMD，通过Multiwfn生成计算文件
+主要包括辐照前后石墨晶体和掺杂Xe的石墨晶体AIMD，通过Multiwfn生成计算文件；
+这里有两种计算AIMD的方法：1.直接使用PBE计算不同温度和压强下的NPT_F或者NPT_I；2.先使用xTB计算，再PBE-REFTRAJ
