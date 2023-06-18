@@ -1,0 +1,39 @@
+export OMP_NUM_THREADS=2 修改线程数
+cp2k运行命令：mpirun -n 2 cp2k.popt -o filename.out filename.inp &
+wsl中并行：在su下  echo 0 > /proc/sys/kernel/yama/ptrace_scope
+
+
+通过chmod +x sub.sh修改sh文件权限
+CP2K续算： file.restart作为输入文件就续上了
+在处理单个C原子等时遇到难以收敛的可以使用UKS来不限制自旋,
+
+
+收敛测试
+非晶计算时建议对使用spin为1和开启UKS和RELAX_MULTIPLICITY 0.001计算单点能进行对比，ADDED_MOS 10
+计算结果表明非晶的 spin为1;
+
+同时使用CUTOFF and REL_CUTOFF以确定其收敛性400，55 ； 500, 60 收敛性测试表明两者<5e-5
+Set CUTOFF and REL_CUTOFF：MD:300,40; ENERGY:350,50; ENERGY_FORCE:400,55
+OPT、Vibrational:400,55; opt+freq:550,70;
+
+对于小体系，需要设置K点但是只能用对角化方法,这里6,6,2的K点对于石墨是合适的，D3修正对
+石墨也是合适的;但是对于这里的5*5*2超胞，K点则无需再用，否则根本算不动，也没有意义;
+
+
+对于SCF设置：
+#对角化方法 带隙很小或者几乎没有，如金属体系，则建议使用对角化的方法进行计算,
+并使用smear方法。注意使用对角化方法必须使用ADDED_MOS 关键词。另外，设置正确的
+MIXING方案也是加速收敛的关键;
+#如果体系有较大带隙的，如为半导体或者绝缘体等，推荐使用OT算法
+
+
+使用REFTRAJ重新优化力和能量时若cell是变化的，切记开启VARIABLE_VOLUME .TRUE.
+
+
+CP2K计算离位愈能http://bbs.keinsci.com/forum.php?mod=viewthread&tid=29841
+
+VMD处理wrap
+pbc set {24.525 24.525 13.690 90.31 90.31 119.70} -all
+#pbc box -all
+pbc wrap -all
+
