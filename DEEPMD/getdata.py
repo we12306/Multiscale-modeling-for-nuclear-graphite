@@ -10,6 +10,7 @@ import shutil
 #############################
 # input data path here, string, this directory should contains
 #   ./data/*frc-1.xyz ./data/*pos-1.xyz
+#必须输出pos.xyz frc.xyz .cell三个文件，同时这里没有维里，
 data_path = "/mnt/d/desktop/potential_morse/graphite_Xe/graphite_Xe_CP2K/MD/graphite_Xe_perfect/graphite_300K_Xe_0.01_model01/graphite_300K_Xe_0.01_model01-REFTRAJ"
 train_path="data/train"
 test_path="data/test"
